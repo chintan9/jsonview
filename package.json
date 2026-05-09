@@ -13,7 +13,7 @@
     "start": "./build.sh",
     "lint": "oxlint src",
     "watch": "npm-watch",
-    "build": "rolldown -c rolldown.config.ts",
+    "build": "rolldown -c rolldown.config.js",
     "tests": "http-server ./tests/"
   },
   "watch": {
