@@ -1,31 +1,65 @@
 @charset "UTF-8";
 
+:root {
+  /* Light Theme Variables */
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --prop-color: #000000;
+  --null-color: #a52a2a;
+  --bool-color: blue;
+  --num-color: blue;
+  --string-color: green;
+  --link-color: #0000ee;
+  --link-visited-color: #551a8b;
+  --callback-color: #a52a2a;
+
+  --error-bg: rgb(239, 239, 239);
+  --error-border: rgb(212, 209, 209);
+  --error-msg-color: rgb(167, 5, 5);
+  --error-col-bg: rgb(167, 5, 5);
+  --error-col-text: white;
+  --error-line-bg: rgb(255, 226, 226);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Theme Variables (Tomorrow Night) */
+    --bg-color: #27292c;
+    --text-color: #d7dad8;
+    --prop-color: #d7dad8;
+    --null-color: #d77c78;
+    --bool-color: #92b2ca;
+    --num-color: #92b2ca;
+    --string-color: #c2c77b;
+    --link-color: #4c9edd;
+    --link-visited-color: #b678c7;
+    --callback-color: #d77c78;
+
+    --error-bg: rgb(37, 37, 37);
+    --error-border: rgb(61, 61, 61);
+    --error-msg-color: rgb(212, 10, 10);
+    --error-col-bg: rgb(212, 10, 10);
+    --error-col-text: white;
+    --error-line-bg: rgb(32, 29, 29);
+  }
+}
+
 body {
   font-family: sans-serif;
   margin: 0;
   padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
-.prop {
-  font-weight: bold;
-}
+.prop { font-weight: bold; color: var(--prop-color); }
+.null { color: var(--null-color); }
+.bool { color: var(--bool-color); }
+.num { color: var(--num-color); }
+.string { color: var(--string-color); white-space: pre-wrap; }
 
-.null {
-  color: #a52a2a;
-}
-
-.bool {
-  color: blue;
-}
-
-.num {
-  color: blue;
-}
-
-.string {
-  color: green;
-  white-space: pre-wrap;
-}
+a { color: var(--link-color); }
+a:visited { color: var(--link-visited-color); }
 
 .collapser {
   position: absolute;
@@ -56,30 +90,16 @@ body {
   margin-left: 0.2em;
 }
 
-.collapser.collapsed {
-  transform: rotate(0deg);
-}
+.collapser.collapsed { transform: rotate(0deg); }
 
-.q {
-  display: inline-block;
-  width: 0px;
-  color: transparent;
-}
+.q { display: inline-block; width: 0px; color: transparent; }
+.quoted .q { display: inline; width: auto; color: inherit; font-weight: normal; }
 
-.quoted .q {
-  display: inline;
-  width: auto;
-  color: inherit;
-  font-weight: normal;
-}
-
-li {
-  position: relative;
-}
+li { position: relative; }
 
 #error {
-  border-bottom: 1px solid rgb(212, 209, 209);
-  background-color: rgb(239, 239, 239);
+  border-bottom: 1px solid var(--error-border);
+  background-color: var(--error-bg);
   margin-bottom: 1.5em;
   padding: 1em 0.5em;
 }
@@ -87,17 +107,15 @@ li {
 .errormessage {
   font-family: monospace;
   margin-top: 0.5em;
-  color: rgb(167, 5, 5);
+  color: var(--error-msg-color);
 }
 
 .errorcolumn {
-  background-color: rgb(167, 5, 5);
-  color: white;
+  background-color: var(--error-col-bg);
+  color: var(--error-col-text);
 }
 
-.errorline {
-  background-color: rgb(255, 226, 226);
-}
+.errorline { background-color: var(--error-line-bg); }
 
 #json {
   font-family: monospace;
@@ -106,95 +124,17 @@ li {
   margin: 0.5em;
 }
 
-ul {
-  list-style: none;
-  margin: 0 0 0 2em;
-  padding: 0;
-}
-
-h1 {
-  font-size: 1.2em;
-}
+ul { list-style: none; margin: 0 0 0 2em; padding: 0; }
+h1 { font-size: 1.2em; }
 
 /* Indent JSON when there's a callback. */
-.callback + #json {
-  padding-left: 1em;
-}
+.callback + #json { padding-left: 1em; }
+.callback { font-family: monospace; color: var(--callback-color); }
 
-.callback {
-  font-family: monospace;
-  color: #a52a2a;
-}
-
-/* Tomorrow Night theme */
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #27292c;
-    color: #d7dad8;
-  }
-
-  a {
-    color: #4c9edd;
-  }
-  a:visited {
-    color: #b678c7;
-  }
-
-  .bool {
-    color: #92b2ca;
-  }
-
-  .num {
-    color: #92b2ca;
-  }
-
-  .null {
-    color: #d77c78;
-  }
-
-  .callback {
-    color: #d77c78;
-  }
-
-  .string {
-    color: #c2c77b;
-  }
-
-  #error {
-    border-bottom: 1px solid rgb(61, 61, 61);
-    background-color: rgb(37, 37, 37);
-    margin-bottom: 1.5em;
-    padding: 1em 0.5em;
-  }
-
-  .errormessage {
-    font-family: monospace;
-    margin-top: 0.5em;
-    color: rgb(212, 10, 10);
-  }
-
-  .errorcolumn {
-    background-color: rgb(212, 10, 10);
-    color: white;
-  }
-
-  .errorline {
-    background-color: rgb(32, 29, 29);
-  }
-}
-
-.spacer {
-  display: inline-block;
-  width: 0px;
-}
+.spacer { display: inline-block; width: 0px; }
 
 /* Allow long URLs to break */
-.string,
-:any-link {
-  word-break: break-all;
-}
+.string, :any-link { word-break: break-all; }
 
 /* Prevent double-highlighting of spacers */
-:is(.spacer, :not(.quoted) > .q)::selection {
-  background-color: transparent;
-}
+:is(.spacer, :not(.quoted) > .q)::selection { background-color: transparent; }
