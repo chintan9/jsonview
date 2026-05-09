@@ -1,57 +1,169 @@
-# JSONView
+# ✨ JSONView
 
-[JSONView](http://jsonview.com) is a Web extension compatible with Firefox and Google Chrome that helps you view JSON documents in the browser.
+> Transform raw JSON into beautifully formatted, interactive documents. The browser extension that makes JSON readable.
 
-- [Install for Firefox](https://addons.mozilla.org/en-US/firefox/addon/jsonview/)
-- [Install for Chrome](https://chrome.google.com/webstore/detail/jsonview/gmegofmjomhknnokphhckolhcffdaihd)
-- [Install for Edge](https://microsoftedge.microsoft.com/addons/detail/jsonview/kmpfgkgaimakokfhgdahhiaaiidiphco)
-- There is no version for Safari because it costs $100/year to publish a free extension to the Mac App Store.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./license.txt)
+[![TypeScript](https://img.shields.io/badge/TypeScript-4.5+-blue.svg)](https://www.typescriptlang.org/)
 
-Normally, when encountering a [JSON](http://json.org) document (content type `application/json`), Firefox simply prompts you to download the view. With the JSONView extension, JSON documents are shown in the browser similar to how XML documents are shown. The document is formatted, highlighted, and arrays and objects can be collapsed. Even if the JSON document contains errors, JSONView will still show the raw text.
+Tired of staring at raw JSON walls of text? **JSONView** automatically beautifies JSON documents in your browser with syntax highlighting, collapsible sections, and smart formatting. Install once, view JSON forever—no more downloads, no more confusion.
 
-Once you've got JSONView installed, check out [this example JSON file](http://jsonview.com/example.json) to see the extension in action!
+When you encounter a JSON file (served with `application/json` content type), JSONView instantly formats and highlights it, making it easy to explore deeply nested structures. Perfect for API developers, DevOps engineers, and anyone working with JSON data.
 
-If you'd like to contribute to JSONView but don't want to code, consider contributing a translation. Copy the existing localization files from `src/_locale` and fill them in for your own language, then send a pull request. You can do it all from the GitHub interface. There are not many strings to translate!
+## 📥 Install
 
-## Keyboard Shortcuts
+Get JSONView for your browser:
 
-- Left Arrow - Collapses the json on key up
-- Right Arrow - Expands the json on key up
+| Browser | Link |
+|---------|------|
+| **Edge** | [Install from Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/jsonview/biaiohdllmhjchjdhgamfmdjfhpbaohf) |
 
-## Reporting Issues
+> **Note on Safari**: Safari charges $100/year to publish extensions to the App Store, making a free version unfeasible.
 
-Use the GitHub [Issue tracker for JSONView](https://github.com/bhollis/jsonview/issues) to file issues. Pull requests are especially welcome.
+## ✨ Features
 
-## Developing JSONView
+- **🎯 Automatic Detection** — No setup required. JSON files are detected and formatted automatically
+- **🌈 Syntax Highlighting** — Color-coded syntax makes it easy to spot values, keys, and data types at a glance
+- **📁 Collapse & Expand** — Fold/unfold nested objects and arrays to focus on what matters
+- **🛡️ Error Tolerant** — Even malformed JSON displays readable raw text so you can debug issues
+- **⚡ Lightning Fast** — Minimal overhead means instant formatting—no waiting, no bloat
+- **⌨️ Keyboard Navigation** — Use arrow keys to navigate and control folding (see [Keyboard Shortcuts](#️-keyboard-shortcuts))
+- **🌍 Multilingual** — Available in 15+ languages to support developers worldwide
+- **📦 Lightweight** — Small file size and efficient code means no performance impact on your browser
 
-Before contributing to JSONView, make sure to read the [Contributing Guidelines](CONTRIBUTING.md). I appreciate contributions people make to JSONView, but the goal of the extension is to be simple and straightforward, so I frequently reject contributions that add complexity or unnecessary features. Please consider filing an issue before doing any work, so you don't waste time on something I won't accept.
+[Try it on a live example →](http://jsonview.com/example.json)
 
-- Install [NodeJS](https://nodejs.org/en/) and run `corepack enable`.
-- Check out jsonview.
-- Run `pnpm i` inside the jsonview repository.
-- Run `pnpm start` to build the extension.
-- In Firefox, go to `about:debugging#addons` in the address bar, check "Enable add-on debugging", select "Load Temporary Add-on", and choose the `jsonview/build-firefox/manifest.json` file.
-- In Chrome, Edge, etc., go to `edge://extensions/`, in the address bar, enable "Developer mode", select "Load Unpacked", and choose the `jsonview/build-chrome` folder.
-- Run `pnpm tests` to start a little webserver that serves all the JSON files in `./tests`.
+## ⌨️ Keyboard Shortcuts
 
-JSONView makes use of [TypeScript](https://www.typescriptlang.org/). I recommend [VSCode](https://code.visualstudio.com/) for editing the code - it will automatically prompt to install the correct extensions, and will highlight errors. All of the code that makes up the extension itself are in `src/`.
+| Key | Action |
+|-----|--------|
+| <kbd>←</kbd> Left Arrow | Collapse JSON on key up |
+| <kbd>→</kbd> Right Arrow | Expand JSON on key up |
 
-## Common Issues
+## ❓ Troubleshooting
 
-- **JSONView isn't displaying my file as JSON**: You are probably not serving
-  the JSON with the "application/json" MIME type.
-- **Opening a local .json file uses the Firefox default JSON viewer**: You need to disable the built-in JSON viewer to use JSONView. Go to "about:config" and set "devtools.jsonview.enabled" to "false".
+### JSONView isn't formatting my JSON file
 
-JSONView is open source software under the MIT license.
+**Why this happens:** Your server isn't sending the `Content-Type: application/json` HTTP header.
 
-## Publishing
+**How to fix it:**
+- Ensure your web server or API is configured to send `Content-Type: application/json`
+- For local files, you may need a local server (try `python -m http.server` or `pnpm tests`)
+- Check your server's MIME type configuration
 
-```
+### Firefox shows the built-in JSON viewer instead
+
+**Why this happens:** Firefox's built-in JSON viewer (`devtools.jsonview`) takes precedence over extensions.
+
+**How to fix it:**
+1. Type `about:config` in the address bar
+2. Search for `devtools.jsonview.enabled`
+3. Toggle it to `false`
+4. Reload your JSON pages
+
+## 🚀 Development
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/en/) 16 or higher
+- [pnpm](https://pnpm.io/) 7 or higher (or use `corepack enable` to auto-manage)
+
+### Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/chintan9/jsonview.git
+cd jsonview
+
+# Enable pnpm with corepack (if not already installed)
+corepack enable
+
+# Install dependencies
+pnpm install
+
+# Build the extension in watch mode
 pnpm start
+
+# In another terminal, run the test server
+pnpm tests
 ```
 
-`jsonview-chrome.zip` and `jsonview-firefox.zip` can then be manually uploaded to the extension sites.
+### Loading the Extension
 
-- Chrome: https://chrome.google.com/webstore/devconsole/
-- Firefox: https://addons.mozilla.org/en-US/developers/addons
-- Edge: https://partner.microsoft.com/en-us/dashboard/microsoftedge/overview
+After running `pnpm start`, you'll have built extensions in `build-chrome/` and `build-firefox/`.
+
+**Firefox Debugging:**
+1. Navigate to `about:debugging#addons`
+2. Check the "Enable add-on debugging" checkbox
+3. Click "Load Temporary Add-on"
+4. Select the `build-firefox/manifest.json` file
+5. The extension will reload automatically when you save changes
+
+**Chrome, Edge, and Chromium-based Browsers:**
+1. Open `chrome://extensions/` (or `edge://extensions/`)
+2. Enable "Developer mode" (toggle in top-right corner)
+3. Click "Load Unpacked"
+4. Select the `build-chrome` folder
+5. The extension will reload automatically when you save changes
+
+### Project Structure
+
+```
+jsonview/
+├── src/                    # TypeScript source files
+│   ├── viewer.ts          # Main UI and display logic
+│   ├── background-*.ts    # Browser-specific background scripts
+│   ├── content.ts         # Content script for JSON detection
+│   ├── jsonformatter.ts   # JSON parsing and formatting engine
+│   └── _locales/          # Translation files
+├── tests/                 # JSON test files for manual testing
+├── build-chrome/          # Compiled Chrome extension (auto-generated)
+├── build-firefox/         # Compiled Firefox extension (auto-generated)
+└── tsconfig.json          # TypeScript configuration
+```
+
+### Tech Stack
+
+- **[TypeScript](https://www.typescriptlang.org/)** — Type-safe JavaScript prevents bugs and makes refactoring easier
+- **[VS Code](https://code.visualstudio.com/)** — Perfect for extension development with built-in debugging and auto-suggestions
+- **[pnpm](https://pnpm.io/)** — Fast, disk-efficient package manager that's faster than npm or yarn
+- **[Rolldown](https://rolldown.rs/)** — Modern JavaScript bundler for optimized builds
+
+## 🌍 Contributing
+
+We welcome contributions! JSONView's philosophy is **simplicity first**—we keep the extension lightweight and focused. Before you start:
+
+### Before You Code
+
+1. **Check [Contributing Guidelines](CONTRIBUTING.md)** — This explains our design philosophy
+2. **[Open an issue](https://github.com/chintan9/jsonview/issues) first** — Discuss your idea to ensure it aligns with the project vision
+3. Don't worry if we decline feature requests—we just want to keep this extension lean and focused
+
+### Ways to Contribute
+
+- **Code** — Bug fixes and simple enhancements are always welcome
+- **Translations** — Help translate JSONView to more languages:
+  - Copy files from `src/_locales/en/` to create a new language folder
+  - Translate the strings and submit a pull request
+  - No coding experience needed—just GitHub!
+- **Issues & Testing** — Report bugs, suggest improvements, or help test new features
+- **Documentation** — Help improve this README or other docs
+
+## 📋 License
+
+JSONView is open source under the **MIT License**. See [license.txt](./license.txt) for details.
+
+## 🙏 Credits & Attribution
+
+This project is a fork of the original **[JSONView](https://github.com/bhollis/jsonview)** by **[@bhollis](https://github.com/bhollis)**.
+
+The original JSONView extension laid the foundation for this project and continues to serve thousands of developers. We're grateful for the excellent work and open source spirit that made this possible. If you're looking for the original project, visit [github.com/bhollis/jsonview](https://github.com/bhollis/jsonview).
+
+This fork maintains the core mission: keeping JSON viewing simple, fast, and accessible to everyone.
+
+## 📞 Support & Feedback
+
+Encountered a bug? Have an idea for improvement?
+
+➜ **[Open an issue on GitHub](https://github.com/chintan9/jsonview/issues)** — Be as detailed as possible, including your browser version and the problematic JSON if applicable.
+
+**Pull requests are especially welcome!** If you have a fix or improvement ready, we'd love to review it.
