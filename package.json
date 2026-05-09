@@ -3,10 +3,12 @@
   "version": "3.2.0",
   "name": "jsonview",
   "title": "JSONView",
-  "description": "View JSON documents in the browser.",
+  "description": "View JSON documents in the browser. Fork maintained by chintan9 of the original JSONView by Benjamin Hollis.",
   "homepage": "https://jsonview.com/",
   "author": "Benjamin Hollis",
-  "repository": "https://github.com/bhollis/jsonview",
+  "maintainer": "Chintan",
+  "repository": "https://github.com/chintan9/jsonview",
+  "originalRepository": "https://github.com/bhollis/jsonview",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -24,7 +26,8 @@
   },
   "contributors": [
     "Gabriel Barros",
-    "Quoc-Viet Nguyen"
+    "Quoc-Viet Nguyen",
+    "Chintan (Maintainer - Fork)"
   ],
   "translators": [
     "markh van BabelZilla.org (nl)",
@@ -63,7 +66,7 @@
       "description": "JSON-Dokumente im Browser anzeigen."
     },
     "en": {
-      "description": "View JSON documents in the browser."
+      "description": "View JSON documents in the browser with syntax highlighting, collapsible sections, and smart formatting."
     },
     "es-ES": {
       "description": "Permite abrir documentos JSON en el navegador."
